@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { DetailsEntity } from "src/details/details.entity";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class SwitchEntity {
@@ -22,6 +23,9 @@ export class SwitchEntity {
 
     @Column()
     date:number;
+
+    @OneToMany(() => DetailsEntity, details => details.switches)
+    details : DetailsEntity[];
 
     
 }

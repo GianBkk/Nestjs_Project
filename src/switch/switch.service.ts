@@ -1,5 +1,5 @@
 import { Injectable, Inject } from '@nestjs/common';
-import { from, Observable } from 'rxjs';
+import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { SwitchEntity } from './switch.entity';
 
@@ -8,8 +8,7 @@ import { SwitchEntity } from './switch.entity';
 @Injectable()
 export class SwitchService {
     constructor(
-        @Inject('SWITCH_REPOSITORY')
-        private readonly switchRepository: Repository<SwitchEntity>
+        @InjectRepository(SwitchEntity) private readonly switchRepository: Repository<SwitchEntity>
     ) {}
 
     createSwitch(dto : SwitchEntity): Promise<SwitchEntity> {
