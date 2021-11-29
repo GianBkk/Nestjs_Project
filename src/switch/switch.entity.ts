@@ -10,6 +10,9 @@ export class SwitchEntity {
     name:string;
 
     @Column()
+    ip: string;
+
+    @Column()
     oid:string;
 
     @Column()

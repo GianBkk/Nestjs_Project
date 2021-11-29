@@ -7,4 +7,6 @@ export class DetailsController {
   constructor(private readonly detailsService: DetailsService) {}
 
   
+
+  
 }

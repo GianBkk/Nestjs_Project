@@ -9,6 +9,15 @@ export class DetailsEntity {
     @Column()
     name:string;
 
+    @Column()
+    desc:string;
+
+    @Column()
+    time:string;
+
+    @Column()
+    timestamp:Date;
+
     @ManyToOne(() => SwitchEntity, switches => switches.details, {onDelete: 'CASCADE'})
     switches:SwitchEntity;
 
