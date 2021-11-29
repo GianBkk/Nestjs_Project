@@ -1,14 +1,17 @@
 import { Module } from '@nestjs/common';
-import { SwitchService } from './services/switch.service';
-import { SwitchController } from './controllers/switch.controller';
+import { SwitchService } from './switch.service';
+import { SwitchController } from './switch.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { SwitchModelEntity } from './models/switch.entity';
+import { SwitchEntity } from './switch.entity';
+import { DatabaseModule } from 'src/database/database.module';
+import { SwitchProvider } from './switch.provider';
+
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([SwitchModelEntity])
+    DatabaseModule
   ],
-  providers: [SwitchService],
+  providers: [SwitchService, ...SwitchProvider],
   controllers: [SwitchController]
 })
 export class SwitchModule {}

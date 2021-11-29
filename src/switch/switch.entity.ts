@@ -1,7 +1,7 @@
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity('switch_model')
-export class SwitchModelEntity {
+@Entity()
+export class SwitchEntity {
     @PrimaryGeneratedColumn()
     id:number;
 
