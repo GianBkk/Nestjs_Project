@@ -6,7 +6,6 @@ import { DetailsEntity } from './details.entity';
 import { Cron } from '@nestjs/schedule';
 const snmp = require('snmp-native');
 
-
 @Injectable()
 export class DetailsService {
     constructor(
@@ -22,8 +21,8 @@ export class DetailsService {
         }
     }
 
-    getAll() : Promise<SwitchEntity[]> {
-        return this.switchRepo.find();
+    getAll() : Promise<DetailsEntity[]> {
+        return this.detailsRepo.find()
     }
 
     create(dto : DetailsEntity) : Promise<DetailsEntity> {
@@ -36,10 +35,9 @@ export class DetailsService {
         const data = await this.getAll();
         const timestamp = Date.now();
 
-
         data.forEach(data => {
             
-            let session = new snmp.Session({ host: data.ip, port: 161, community: 'public' })
+            let session = new snmp.Session({ host: data.switches.ip, port: 161, community: 'public' })
 
             let oids = [data.oid, data.oiddesc, data.oidtime];
 
@@ -49,19 +47,6 @@ export class DetailsService {
                 let time = varbinds[2].value;
                 this.create([{name: name, desc: desc, time: time, timestamp: timestamp}])   
             })
-
-            
-
-
         });
-
-
-
-    }
-
-
-
-
-    
-    
+    } 
 }

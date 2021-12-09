@@ -1,5 +1,5 @@
 import { SwitchEntity } from "src/switch/switch.entity";
-import { Column, Entity, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class DetailsEntity {
@@ -10,10 +10,13 @@ export class DetailsEntity {
     name:string;
 
     @Column()
-    desc:string;
+    oid:string;
 
     @Column()
-    time:string;
+    oiddesc:string;
+
+    @Column()
+    oidtime:string;
 
     @Column()
     timestamp:Date;
